@@ -1,8 +1,7 @@
-from src.chatbot.tools import get_product_price, get_product_features  # Fixed import name
+from src.chatbot.tools import get_product_price, get_product_features
 from config.settings import settings
 import pytest
 
-# supress deprecation warnings
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
