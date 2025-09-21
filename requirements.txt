@@ -1,0 +1,7 @@
+langchain
+langchain-openai
+openai
+faiss-cpu
+pydantic
+pytest
+structlog
