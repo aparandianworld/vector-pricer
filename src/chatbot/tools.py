@@ -7,6 +7,7 @@ from config.settings import settings
 
 @tool
 def get_product_price(laptop_name: str) -> str:
+    """Given a product name, returns the price from RDBMS."""
     conn = sqlite3.connect(settings.postgres_url.replace("sqlite://", ""))
     c = conn.cursor()
     c.execute("SELECT price FROM laptops WHERE name = ?", (laptop_name,))
@@ -19,6 +20,7 @@ def get_product_price(laptop_name: str) -> str:
 
 @tool
 def get_product_features(laptop_name: str) -> str:
+    """Given a product name, returns features from VectorDB."""
     embeddings = OpenAIEmbeddings(openai_api_key=settings.openai_api_key)
     vectorstore = FAISS.load(
         settings.vector_db_path, 
