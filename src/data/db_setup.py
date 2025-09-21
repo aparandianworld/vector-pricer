@@ -2,7 +2,7 @@ import sqlite3
 from config.settings import settings
 
 def setup_rdbms():
-    conn = sqlite3.connect(settings.postgres_url.replace("sqlite://", ""))
+    conn = sqlite3.connect(settings.postgres_url.replace("sqlite:///", ""))
     c = conn.cursor()
     c.execute('''
         CREATE TABLE IF NOT EXISTS laptops (name TEXT PRIMARY KEY, price REAL)

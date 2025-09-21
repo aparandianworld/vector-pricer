@@ -6,8 +6,7 @@ from config.settings import settings
 def ingest_vectors():
     embeddings = OpenAIEmbeddings(
         openai_api_key=settings.openai_api_key,
-        openai_api_base=settings.openai_base_url,
-        model=settings.openai_model,
+        model="text-embedding-3-small"
     )
     docs = [
         Document(page_content = "MacBook Air features: 13-inch display, M2 chip, 8GB RAM, 256GB storage, $999"),
