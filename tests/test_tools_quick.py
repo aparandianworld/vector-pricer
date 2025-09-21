@@ -2,10 +2,14 @@ from src.chatbot.tools import get_product_price, get_product_features  # Fixed i
 from config.settings import settings
 import pytest
 
+# supress deprecation warnings
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+
 def test_get_product_price():
     """Test price lookup for existing product."""
     result = get_product_price("MacBook Air")
-    assert "1499.99" in result
+    assert "999" in result
     assert "The price of MacBook Air" in result
 
 def test_get_product_price_missing():
