@@ -23,7 +23,7 @@ def create_product_agent():
     except Exception:
         print("DEBUG: Failed to pull ReAct prompt template. Using default prompt.")
         prompt = """
-        Plese answer questions about Macbook laptops with access to the following tools:
+        Please answer questions about Macbook laptops with access to the following tools:
 
         {tools}
 
@@ -32,19 +32,21 @@ def create_product_agent():
         Thought: {agent_scratchpad}
         """
 
-        agent = create_react_agent(llm, tools, prompt)
-        agent_executor = AgentExecutor(
-            agent = agent,
-            tools = tools,
-            verbose = True,
-            handle_parsing_errors=True,
-            max_iterations=3,
-        )
+    agent = create_react_agent(llm, tools, prompt)
+    agent_executor = AgentExecutor(
+        agent=agent,
+        tools=tools,
+        verbose=True,
+        handle_parsing_errors=True,
+        max_iterations=3,
+    )
 
-        return agent_executor
+    return agent_executor
 
 def ask_product_question(query: str):
-    pass
+    agent = create_product_agent()
+    result = agent.invoke({"input": query})
+    return result.get("output") if isinstance(result, dict) else result
 
 if __name__ == "__main__":
     print("=== Vector pricer agent demo ===")
